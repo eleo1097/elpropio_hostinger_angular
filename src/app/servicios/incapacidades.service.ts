@@ -12,7 +12,7 @@ export class IncapacidadesService {
   //private apiurl = 'http://192.168.1.148:8000/api';
 
 
-  private apiurl = 'https://pruebahostinger.devbymiguel.com/api/';
+  private apiurl = 'https://pruebahostinger.devbymiguel.com/api';
 
   constructor(private http: HttpClient) {}
 

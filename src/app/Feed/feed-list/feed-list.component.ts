@@ -33,7 +33,7 @@ export class FeedListComponent implements OnInit {
     this.recuperarToken();
     this.cargandoReferidos = true;
 
-    const baseUrl = 'http://localhost:8000'; // Base URL del backend
+    const baseUrl = 'https://pruebahostinger.devbymiguel.com'; // Base URL del backend
 
     this.feedService.getAllFeeds(this.token).subscribe(
         response => {

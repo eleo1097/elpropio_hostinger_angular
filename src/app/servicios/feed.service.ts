@@ -12,7 +12,7 @@ export class FeedService {
   //private  baseUrl =  'http://192.168.1.148:8000/api';
 
 
-  private baseUrl = 'https://pruebahostinger.devbymiguel.com/api/';
+  private baseUrl = 'https://pruebahostinger.devbymiguel.com/api';
   private feedsUrl = `${this.baseUrl}/feeds`;
   private feedsdeleteUrl = `${this.baseUrl}/feeds/`;
 

@@ -12,7 +12,7 @@ export class UsersService {
  //url = 'http://192.168.1.148:8000/api/users';
 
  // base url
- private apiurl = 'https://pruebahostinger.devbymiguel.com/api/';
+ private apiurl = 'https://pruebahostinger.devbymiguel.com/api';
 
   
 
