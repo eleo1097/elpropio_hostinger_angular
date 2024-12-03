@@ -1,0 +1,47 @@
+<div class="container mx-auto p-6">
+    <h2 class="text-3xl font-semibold text-center mb-6">Lista de Cesantías Autorizadas</h2>
+
+ 
+
+
+    <div class="table-container">
+        <!-- Icono de carga -->
+        <div *ngIf="cargandoReferidos" class="loading-overlay flex justify-center items-center h-64">
+            <div class="spinner-border text-blue-500" role="status">
+                <span class="visually-hidden">Cargando...</span>
+            </div>
+        </div>
+
+        <table *ngIf="!cargandoReferidos" class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="py-3 px-4 text-left text-gray-600">ID</th>
+                    <th class="py-3 px-4 text-left text-gray-600">Cédula</th>
+                    <th class="py-3 px-4 text-left text-gray-600">Nombre</th>
+                    <th class="py-3 px-4 text-left text-gray-600">Tipo de Solicitud</th>
+                    <th class="py-3 px-4 text-left text-gray-600">Estado</th>
+                    <th class="py-3 px-4 text-left text-gray-600">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="text-gray-700">
+                <tr *ngFor="let cesantia of paginatedCesantias()" class="hover:bg-gray-50">
+                    <td class="py-2 px-4 border-b">{{ cesantia.id }}</td>
+                    <td class="py-2 px-4 border-b">{{ cesantia.user.cedula }}</td>
+                    <td class="py-2 px-4 border-b">{{ cesantia.user.name }}</td>
+                    <td class="py-2 px-4 border-b">{{ cesantia.tipo_cesantia_reportada }}</td>
+                    <td class="py-2 px-4 border-b">{{ cesantia.estado }}</td>
+                    <td class="py-2 px-4 border-b flex space-x-2">
+                        <button type="button" class="bg-green-600 text-white rounded-md p-1 hover:bg-green-700" (click)="aprobarCesantia(cesantia.id)">Aprobar</button>
+                        <button type="button" class="bg-red-600 text-white rounded-md p-1 hover:bg-red-700" (click)="denegarCesantiaAdmin(cesantia.id)">Denegar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div *ngIf="!cargandoReferidos" class="flex justify-center mt-4">
+            <button class="bg-gray-400 text-white rounded-md px-4 py-2" (click)="prevPage()" [disabled]="currentPage === 1">Anterior</button>
+            <span class="mx-3">Página {{ currentPage }} de {{ totalPages() }}</span>
+            <button class="bg-gray-400 text-white rounded-md px-4 py-2" (click)="nextPage()" [disabled]="currentPage === totalPages()">Siguiente</button>
+        </div>
+    </div>
+</div>

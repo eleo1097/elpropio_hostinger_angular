@@ -1,0 +1,9 @@
+/* index.component.scss */
+
+:host {
+  display: block;
+}
+
+img {
+  transition: opacity 1s ease-in-out;
+}

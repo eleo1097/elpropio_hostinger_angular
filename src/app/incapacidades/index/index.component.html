@@ -1,0 +1,102 @@
+<div class="container mx-auto p-6">
+  <h2 class="text-3xl font-semibold text-center mb-6">Lista de Incapacidades</h2>
+
+  <div class="bg-gray-50 p-4 rounded-lg shadow-md mb-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+
+      <div>
+        <label for="searchTerm" class="block text-sm font-medium text-gray-700">Buscar Incapacidad por Cédula:</label>
+        <input type="text" id="searchTerm" [(ngModel)]="searchTerm" class="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-green-500" placeholder="Buscar por cédula">
+      </div>
+      <div>
+        <label for="tipoIncapacidad" class="block text-sm font-medium text-gray-700">Buscar por Tipo de Incapacidad:</label>
+        <select id="tipoIncapacidad" [(ngModel)]="tipoIncapacidadSeleccionada" class="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-green-500">
+          <option value="">Seleccionar Tipo de Incapacidad</option>
+          <option *ngFor="let tipo of tiposIncapacidad" [value]="tipo">{{ tipo }}</option>
+        </select>
+      </div>
+      <div>
+        <label for="searchMonth" class="block text-sm font-medium text-gray-700">Seleccionar incapacidad por Mes:</label>
+        <input type="month" id="searchMonth" [(ngModel)]="searchMonth" class="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-green-500" aria-label="Month Filter">
+      </div>
+      <div>
+        <label for="year" class="block text-sm font-medium text-gray-700">Seleccionar año a Descargar:</label>
+        <input type="text" id="year" [(ngModel)]="year" class="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-green-500" placeholder="Buscar por año">
+      </div>
+      <div class="flex items-end">
+        <button type="button" class="w-full bg-green-600 text-white rounded-md p-2 hover:bg-green-700" (click)="downloadIncapacidadesByYear(year)">Descargar Incapacidades</button>
+      </div>
+    </div>
+  
+
+    </div>
+  
+   
+    
+  <div class="table-container">
+    <div *ngIf="cargandoReferidos" class="loading-overlay">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+      </div>
+    </div>
+
+    <table *ngIf="!cargandoReferidos" class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="py-3 px-4 text-left text-gray-600">ID</th>
+          <th class="py-3 px-4 text-left text-gray-600">Cédula</th>
+          <th class="py-3 px-4 text-left text-gray-600">Nombre</th>
+          <th class="py-3 px-4 text-left text-gray-600">Incapacidad Reportada</th>
+          <th class="py-3 px-4 text-left text-gray-600">Días de incapacidad</th>
+          <th class="py-3 px-4 text-left text-gray-600">Fecha inicio incapacidad</th>
+          <th class="py-3 px-4 text-left text-gray-600">Entidad Afiliada</th>
+          <th class="py-3 px-4 text-left text-gray-600">Codigo</th>
+          <th class="py-3 px-4 text-left text-gray-600">Imagen</th>
+          <th class="py-3 px-4 text-left text-gray-600">Documentos</th>
+          <th class="py-3 px-4 text-left text-gray-600">Aplica Cobro</th>
+          <th class="py-3 px-4 text-left text-gray-600">Tipo de Incapacidad</th>
+          <th class="py-3 px-4 text-left text-gray-600">Tipo de Ausentismo</th>
+          <th class="py-3 px-4 text-left text-gray-600">Acciones</th>
+        </tr>
+      </thead>
+      <tbody class="text-gray-700">
+        <tr *ngFor="let incapacidad of paginatedIncapacidades()" class="hover:bg-gray-50">
+          <td class="py-2 px-4 border-b">{{ incapacidad.id }}</td>
+          <td class="py-2 px-4 border-b">{{ incapacidad.user.cedula }}</td>
+          <td class="py-2 px-4 border-b">{{ incapacidad.user.name }}</td>
+          <td class="py-2 px-4 border-b">{{ incapacidad.tipo_incapacidad_reportada }}</td>
+          <td class="py-2 px-4 border-b">{{ incapacidad.dias_incapacidad }}</td>
+          <td class="py-2 px-4 border-b">{{ incapacidad.fecha_inicio_incapacidad }}</td>
+          <td class="py-2 px-4 border-b">{{ incapacidad.entidad_afiliada }}</td>
+          <td class="py-2 px-4 border-b">
+            {{ obtenerCodigoCategoria(incapacidad.categoria_id) }} <!-- Mostrar el código -->
+          </td>
+          <td class="py-2 px-4 border-b">
+            <button type="button" class="bg-blue-600 text-white rounded-lg shadow-md p-2 transition duration-300 hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50" (click)="mostrarImagenes(incapacidad)">Visualizar</button>
+          
+          </td>
+          <td>
+            <button type="button" class="text-center bg-green-600 text-white rounded-lg shadow-md p-2 transition duration-300 hover:bg-green-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-50" (click)="incapacidad.id ? downloadDocumentsById(incapacidad.id) : null">Descargar</button>
+
+            
+          </td>
+          
+          
+          <td class="py-2 px-4 border-b">{{ incapacidad.aplica_cobro }}</td>
+          <td class="py-2 px-4 border-b">{{ incapacidad.identificador_incapacidad}}</td>
+          <td class="py-2 px-4 border-b">{{ incapacidad.tipo_incapacidad }}</td>
+          <td class="py-2 px-4 border-b">
+            <button type="button" class="bg-yellow-500 text-white rounded-md p-1 hover:bg-yellow-600" (click)="editarIncapacidades(incapacidad.id)">Autorizar</button>
+            <button type="button" class="bg-red-500 text-white rounded-md p-1 hover:bg-red-600" (click)="eliminarFeeds(incapacidad.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="flex justify-center mt-4">
+    <button class="bg-gray-300 text-gray-700 rounded-md px-4 py-2 mr-2" (click)="prevPage()" [disabled]="currentPage === 1">Anterior</button>
+    <span class="mx-3">Página {{ currentPage }} de {{ totalPages() }}</span>
+    <button class="bg-gray-300 text-gray-700 rounded-md px-4 py-2" (click)="nextPage()" [disabled]="currentPage === totalPages()">Siguiente</button>
+  </div>
+</div>

@@ -1,0 +1,17 @@
+<div id="body" class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="login-container bg-white rounded-lg shadow-md p-8 max-w-sm w-full">
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="login-form">
+            <h1 class="text-3xl font-bold text-center text-gray-800 mb-8">Inicio de sesión</h1>
+            <h2 class="text-center text-gray-600 mb-4">Portal Talento Humano</h2>
+            <div class="input-group mb-5">
+                <input type="text" formControlName="cedula" placeholder="Cédula" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300" required>
+            </div>
+            <div class="input-group mb-6">
+                <input type="password" formControlName="password" placeholder="Contraseña" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-300" required>
+            </div>
+            <button type="submit" class="w-full p-3 bg-green-500 text-white rounded-full font-semibold transition duration-300 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400">Ingresar</button>
+        </form>
+        
+        <button (click)="registrarUsuario()" class="w-full p-3 mt-4 bg-blue-500 text-white rounded-full font-semibold transition duration-300 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">Registrarse</button>
+    </div>
+</div>
