@@ -13,7 +13,7 @@ export class CesantiasService {
 
 
   // URL API 
-  apiurl = 'http://127.0.0.1:8000/api/';
+  apiurl = 'https://pruebahostinger.devbymiguel.com/api/';
 
   constructor(private http: HttpClient) {}
 

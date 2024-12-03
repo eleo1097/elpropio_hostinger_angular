@@ -15,11 +15,11 @@ export class ReferidosService {
 
 
 
-  private apiUrl = 'http://127.0.0.1:8000/api/referidos/';
+  private apiUrl = 'https://pruebahostinger.devbymiguel.com/api/referidos/';
 
   
    // URL de la API para obtener usuarios
-   usersUrl = 'http://127.0.0.1:8000/api/users';
+   usersUrl = 'https://pruebahostinger.devbymiguel.com/api/users';
  
 
   constructor(private http: HttpClient) { }

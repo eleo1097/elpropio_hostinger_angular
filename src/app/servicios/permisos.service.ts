@@ -12,7 +12,7 @@ export class PermisosService {
 
 
 
-  private apiurl = 'http://127.0.0.1:8000/api/permisos';
+  private apiurl = 'https://pruebahostinger.devbymiguel.com/api/permisos';
 
  
   

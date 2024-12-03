@@ -10,7 +10,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class MallaService {
 
-  private apiUrl = 'http://127.0.0.1:8000/api/malla';  // URL del API para obtener las mallas
+  private apiUrl = 'https://pruebahostinger.devbymiguel.com/api/malla';  // URL del API para obtener las mallas
 
   constructor(private http: HttpClient) { }
 

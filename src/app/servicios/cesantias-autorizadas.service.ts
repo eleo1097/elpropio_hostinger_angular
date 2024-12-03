@@ -14,7 +14,7 @@ export class CesantiasAutorizadasService {
   //private baseUrl = 'http://192.168.1.148:8000/api/';
 
   // URL base de la API
-  private baseUrl = 'http://127.0.0.1:8000/api/';
+  private baseUrl = 'https://pruebahostinger.devbymiguel.com/api/';
 
   constructor(private http: HttpClient) {}
 
