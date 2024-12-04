@@ -59,7 +59,7 @@ export class CesantiasService {
       'Authorization': 'Bearer ' + access_token
     });
     const options = { headers: headers };
-    return this.http.get(`${this.apiurl}cesantiasall/`, options);
+    return this.http.get(`${this.apiurl}cesantiasall`, options);
   }
 
   // Método para autorizar una cesantía

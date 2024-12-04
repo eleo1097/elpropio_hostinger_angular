@@ -15,7 +15,7 @@ export class ReferidosService {
 
 
 
-  private apiUrl = 'https://pruebahostinger.devbymiguel.com/api/referidos/';
+  private apiUrl = 'https://pruebahostinger.devbymiguel.com/api/referidos';
 
   
    // URL de la API para obtener usuarios
