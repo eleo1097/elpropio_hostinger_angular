@@ -114,7 +114,7 @@ obtenerCodigoCategoria(categoriaId: number): string {
   mostrarImagenes(incapacidad: Incapacidades): void {
     // Verificar si incapacidad.images está definido y es un array
     const imagenesConRuta = Array.isArray(incapacidad.images) ? incapacidad.images.map((image: any) => ({
-      image_path: `http://localhost:8000/storage/${image.image_path}`
+      image_path: `https://pruebahostinger.devbymiguel.com/storage/${image.image_path}`
     })) : [];
   
     // Crear el HTML para mostrar las imágenes en la alerta

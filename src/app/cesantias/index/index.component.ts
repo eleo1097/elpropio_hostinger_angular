@@ -69,7 +69,7 @@ cargarCesantias(): void {
   mostrarImagenes(cesantias: Cesantias): void {
     // Verificar si incapacidad.images está definido y es un array
     const imagenesConRuta = Array.isArray(cesantias.images) ? cesantias.images.map((image: any) => ({
-        image_path: `http://localhost:8000/storage/${image.image_path}`
+        image_path: `https://pruebahostinger.devbymiguel.com/storage/${image.image_path}`
     })) : [];
 
     // Crear el HTML para mostrar las imágenes y los botones
